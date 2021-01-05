@@ -1,0 +1,339 @@
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }
+
+  /* @import url(https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap); */
+
+* {
+ font-size: 100%;
+ font-family: 'Nunito';
+}
+  
+.infoData{
+  margin:0px !important;
+}
+
+#aboutHeader{
+  font-family: 'Nunito';
+  background-color: #007aa3;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:5px;
+}
+
+#headL{  
+  padding-left:5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.fa-calendar{
+  padding-left: 10px;
+}
+
+#headR{
+  padding-right: 5px;
+}
+#headR .fa{
+  padding-left:5px;
+}
+
+#userNameField{
+    text-transform: capitalize;
+}
+
+#infoBodyMain{
+  display:flex;
+  background-color: #46b5be;
+  color: white;
+}
+
+#singleUserModal_profileImage{
+  width:100px;
+  height:100px;
+  background-color: #46b5be;
+  padding: 10px;
+  flex:0;
+}
+
+.circular--landscape {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  padding-top: 20px;
+  padding-left: 20px;
+  
+  /* overflow: hidden; */
+  /* border-radius: 50%; */
+  
+}
+
+.circular--landscape img {
+/* width: auto; */
+/* height: 100%; */
+/* margin-left: -50px; */
+position: absolute;
+left: 50%;
+top: 50%;
+padding-bottom:40px;
+/* height: 100%;
+width: 100%; */
+-webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+
+border-radius:50%;
+
+}
+
+#infoTitle{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.infoRow{
+  padding:6px;
+  
+}
+
+.infoTitle .p{
+    /* padding: 0px; */
+  /* padding-left:20px;
+  padding-right:20px; */
+}
+
+#aboutData{
+  background-color: #dce8e8;
+  color: #626262;
+    padding:10px;
+}
+
+.infoHeader{
+  
+}
+
+#aboutWindow{
+    display: flex;
+    flex-direction: column;
+    overflow-y: none;    
+    transition: max-height 0.2s ease-out;
+}
+
+.infoText{
+  font-size:80%;
+}
+
+#chatDivider{
+  background-color:#ffc807;
+  height: 6px;
+}
+
+#chatPannel{
+    /* height:100px; */
+  padding: 1px;
+  background-color: #46b5be;
+  flex-grow:1;
+}
+
+.chat_Body{
+     /* height:200px;    */
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+      }
+
+.chat_send{
+  display:flex;
+}
+#message{
+ flex-grow:1
+}
+
+ul {
+        list-style-type: none;
+        padding:5px;
+    }
+
+.chat .owner{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.chat .other{
+  display: flex;
+  align-items: center;
+}
+
+.chat .owner .messageBody{
+  padding: 10px;
+  background-color: #dce8e8;
+  text-align: right;
+  border-radius:15px;
+  margin: 10px;
+  width: 60%;
+  float: right;
+  border-top-right-radius: 0px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.chat .other .messageBody {
+  float: left;
+    background-color: #f5f3e4;
+  padding: 10px; 
+  border-radius:15px;
+  margin: 10px;
+  width: 60%;
+  border-top-left-radius: 0px;
+}
+  
+      
+      
+
+      .calendarSingle .fc-timegrid-now-indicator-container{
+        background: rgb(255, 255, 255) !important;
+      }
+
+      .messageTime{
+          color: white !important;
+          font-size:50%;
+      }
+
+      #toggleAllFavSelection{
+          cursor: pointer;
+      }
+
+      #singleUserHeader{
+          position: fixed;
+          width: 100%;
+          background-color: grey;
+          z-index: 3;
+          
+      }
+
+      #singleUserModal{
+        position: fixed; /* Stay in place */
+        z-index: 3; /* Sit on top */
+        right: 0;
+        top: 55px;
+        width: 60%; /* Full width */
+        height: calc(100% - 55px); /* Full height */
+        overflow: hidden; /* Enable scroll if needed */
+        background-color:white; /* Fallback color */
+        z-index:3;
+        display: flex;
+        flex-direction: column;
+        
+      }
+
+      #singleUserModal_personalDetails{
+        position: fixed;
+        width: 100%;
+        background-color: rgb(238, 238, 238);
+        overflow-y: scroll;
+        transition: max-height 0.2s ease-in-out;
+
+    }
+
+      
+
+      #singleUserModal_name{
+        /* display: flex;
+        flex-direction: column; */
+        flex:0;
+
+          /* padding-left:10px; */
+          
+      }
+
+      #singleUserMain{
+          flex:1;
+      }
+
+      
+      .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        /* padding: 18px; */
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+      }
+      
+            
+      
+      .panel {
+        /* padding: 0 18px; */
+        background-color: white;
+        max-height: 0;
+        overflow-y: scroll;
+        transition: max-height 0.2s ease-out;
+      }
+
+      
+      
+      .accordion:after {
+        content: '\02795'; /* Unicode character for "plus" sign (+) */
+        font-size: 13px;
+        color: #777;
+        float: right;
+        margin-left: 5px;
+      }
+      
+      
+
+
+
+      .infoIconsColmn{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex:0;
+        
+      }
+      
+      .infoIconsColmn .fa{
+        padding: 9px;
+        
+      }
+
+      .messageIfno{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        
+      }
+      
+      .fa-check-circle-o{
+        font-size: 70%;
+      }
+      
+      .message_info_userName{
+        font-size:100%;
+      }
+      
+      
+      
+
+
+      

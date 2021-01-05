@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <style>
+    /* img{
+        border-radius: 50%;
+
+    } */
+    ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+    body {
+        height: 100vh;
+        width: 100vw;
+  font-family: 'Nunito', sans-serif;
+  color: #384047;
+}
+    .circular--landscape {
+        display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    }
+
+    .circular--landscape img {
+        /* width: auto;
+        height: 100%;
+        margin-left: -50px; */
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 100%;
+        width: 100%;
+        -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+    }
+    
+    
+
+    .grid{
+        display: grid;
+        grid-template-columns: 20% 1fr;
+        grid-template-rows: 35vh 60vh;
+        /* grid-template-areas: 
+        "nav"
+        "usersList" "calendar"
+        "content content"
+        "footer footer"; */
+        /* grid-gap: 10px; */
+        }
+
+    .gridInfo{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 2fr auto;
+    }
+
+    .gridInfo div.profileImage{
+        grid-column: 1 / 2;
+        padding: 15px;
+        /* background-color: orange; */
+
+    }
+    .gridInfo div.profileName{
+        padding-top: 0px;
+        grid-column: 2/3;
+        font-size: 100%;
+        font-weight: 700;
+        
+    }
+    .gridInfo div.profileInfo{
+        grid-column: 1/3;
+        background-color: azure;
+        padding-left: 20px;
+        overflow-y:scroll;
+        
+    }
+    .grid div.info{          
+    /* height: 60px; */
+        grid-column: 1 / 3;
+        grid-row: 1/2;
+        /* background-color: hsl(240, 86%, 44%); */
+    }
+
+    .grid div.chat {
+        
+        grid-column: 1 / 3;
+        grid-row: 2/3;
+        background-color: lightblue;
+
+        display: grid;
+        /* grid-template-columns: auto 1fr; */
+        grid-template-rows: auto 2fr auto;
+    }
+
+    .chat_Header{
+        grid-row: 1/2;
+    }
+    .chat_Body{
+        grid-row: 2/3;
+        background-color: antiquewhite;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .chat_send{
+        grid-row: 3/4;
+    }
+
+    li{
+        background-color: lightgray;
+        width: fit-content;
+        padding: 10px;
+        border-radius: 5;
+        margin-bottom: 10px;
+    }
+
+    .sentMessage{
+        /* float:right; */
+        background-color: #66a190;
+        /* margin-right:10px; */
+    }
+
+    
+    
+    </style>
+</head>
+<body>
+        <div class="grid">
+            <div class="info gridInfo">
+                <div class="profileImage">
+                    <div class="circular--landscape">
+                        <img id="profileImage" src="../gse5/emptyProfile.png">
+                    </div>
+                </div>
+                <div class="profileName">
+                        <p id="name">Name</p>
+                        <p id="fieldsOfInterest">Fields of practice:</p>
+                        <p id="exLanguage">exLanguage</p>
+                        <p id="addressCity">addressCity</p>
+                        
+                </div>
+                <div class="profileInfo">
+                        
+                        
+                        <!-- <p id="addressCountry">addressCountry</p> -->
+                        <p id="about">About</p>
+                        
+                        <p id="website">website</p>
+                        <p id="faceBook">facebook</p>
+                        <p id="linkedIn">Linked in</p>
+                </div>                
+            </div>
+
+            <div class="chat">
+                <div class = "chat_Header">Chat Window</div>
+                <div class = "chat_Body">
+                        <ul id="messages"></ul>
+                </div>
+                <div class = "chat_send">
+                        <input id="message" placeholder="Enter message" autocomplete="off">         
+                        <input onclick = "sendMessage()" type="submit" id="SubmitMessageButton"> 
+                </div>
+                <!-- <button onclick="contactUser()">Contact User</button>
+                <button onclick="chat()">Chat with User</button>
+                <button onclick="close()">close</button> -->
+
+                
+                  
+    </div>
+    
+                                
+   
+    <div id="info" style="display: none;">
+    </div>
+        
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+      <script src="../gse5/init.js"></script>
+      <script src="../gse5/singleUser.js"></script>
+</body>
+</html>

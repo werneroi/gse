@@ -1,0 +1,106 @@
+filterCal()
+filterOne() - calls filterCal
+unfilterOne - call filterCal
+
+
+
+fbAllEvents - main list to work with
+
+pop up event maker demo
+https://codepen.io/JSFanatik/pen/XxJegG
+
+rerender tutprial
+https://yiengly.wordpress.com/2019/04/25/adding-filters-and-search-to-fullcalendar-events/
+
+
+not free yet interesting pluign that allows what seems to be easy handeiling of events.
+https://bubble.io/plugin/calendar-fullcalendar-431-1568094670817x101586880920813570
+
+
+
+
+
+allUsersSnapShot = saved from fb on init and hold all the events
+
+initCAl - is handeling the sorting of event with colors, and creating a self event array
+
+fbAllEvents = all the events sorted with colors in initCal
+
+
+
+
+
+
+
+TODO:
+- header texts on text inputs
+- add header to day and month cals for design purposes
+- add title to pending events
+-esc key to close modal and page, why does it show u many times and works only the first time???
+
+- fix color picker not choosing onfirst ineraction
+
+
+- add country slector and filter
+
+ 
+- check accepted guest on confirm request - suppose to work?
+
+- hide confirmed events from other users.
+- start calendar from the current date - disable going back in time?
+
+
+invite:
+show times on even title ++ done
+user side:
+edit - need to add email send. - done.
+delete - check
+
+other side:
+confirm 
+decline
+edit?
+
+
+
+
+
+done 30/9
+- profile picture - crop resize and retain aspect
+- setting for profile - control colors etc
+add field of interests options in profile
+add visible time values aa strings
+decline return the event to the calendar
+- change the foi selector on pubcal
+- add langselector and filter
+
+
+
+uvin88ipzw:dr5m529lh6f:YdwoGoNgCxToUY1rXYYQFIp7Ohl1
+
+
+id: a random number for each event must have!
+title: a name for the event - can be changed so do I need it?
+resourceId - must have!
+description:  status : original_Luid : otherSide_Luid : originalSideEventId : otherSideEventId :requestId
+
+
+when I recieve an event I need to get to the user and the event as quick as possible.
+If i have the luid of each side I can take the relative snapInfo quick.
+
+
+
+THOUHTS ON THINGS TO DO:
+
+when an invitation is declined - currently I delete it on both side. should it be kept as open time? 
+should I give the originaluser the option to delete it?
+
+edit invitation - currently dissabled.
+
+
+
+
+
+TODO now:
+diable select in singleCa;
+enter single event view with open event - changing it doesnt change in the main view

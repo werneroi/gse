@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../gse5/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../gse5/search.js"></script>
+    <title>Community</title>
+    <style>
+ 
+        tr{
+            cursor: pointer;
+            background-color: white;
+        }
+        tr:hover{
+          background-color: green
+        }
+
+        #allUsersDisplay{
+          /* background-color: green; */
+        }
+
+        #allUsersDisplay .gse5-user{
+          cursor: pointer;
+          background-color: green
+        }
+
+        .tab {
+          overflow: hidden;
+          border: 1px solid #ccc;
+          background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+          background-color: inherit;
+          float: left;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 14px 16px;
+          transition: 0.3s;
+          font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+          background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+          background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+          display: none;
+          padding: 6px 12px;
+          border: 1px solid #ccc;
+          border-top: none;
+        }
+        
+
+
+    * { box-sizing: border-box; }
+body {
+  font: 16px Arial;
+}
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+    </style>
+  </head>
+  <body>
+
+    <body>
+      <div class="topnav">
+        <a  href="../gse5/index.html">Home</a>
+        <a  href="../gse5/publicCalendar.html">Public Calendar</a>
+        <a  href="../gse5/personalCalendar.html">Calendar</a>
+        <a class="active" href="../gse5/community.html">Community</a>
+        <a  href="../gse5/welcome.html">Profile</a>
+      </div>
+
+      <div style="padding-left:16px">
+        <h2>Community Page</h2>
+        <!-- <button onclick="readUsers()" type="button" name="button">readUsers</button> -->
+      </div>
+      <div id="masterUsersTable">
+      
+      </div>
+      <form autocomplete="off" class="example" action="javascript:search()" id="searchForm">
+          <div class="autocomplete" style="width:300px;">
+              <input id="myInput" type="text" name="myCountry" placeholder="Search...">
+            </div>
+        <button id = "searchB" type="submit"><i class="fa fa-search" ></i></button>
+        <button id = "cancelS" type="cancel" style="display:none"><i class="fa fa-ban" ></i></button>
+      </form>
+      <div  id='allUsersDisplay'></div>
+        <div>test</div>
+      </div>
+
+      <button onclick="filterLocation()">filter by location</button>
+      <label for="selectLang">Choose a language</label>
+      <select id = "selectLang" name="selectLang"></select>
+      <button onclick="filterByLanguage()">filter by language</button>
+      <button onclick="resetview()">Reset filters</button>
+      
+
+      <div id="userInfo" style="display: none;">
+        <p id="suName">Name</p>
+        <p id="city">City</p>
+        <p id="country">Country</p>
+        <p id="language">Lang<p>
+          <p id="guestEnalbed">Accepting guests<p>
+          </br>
+        <button onclick="backToTable()">Back to Table</button>
+        <div id = "singUserFavCheck"></div>        
+        
+        <!-- <label for='toggleFavoriteSingleUser'>Favorite</label>
+        <input type="checkbox" class="tavCheckBoxSingleUser"id="toggleFavoriteSingleUser" onclick="toggleFavoriteFromSingleView()"/> -->
+        
+
+      </div>
+
+      
+
+      <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+      <script src="../gse5/init.js"></script>
+      <script src="../gse5/firebaseActions.js"></script>
+      <script src="../gse5/community.js"></script>
+      <script src="../gse5/getUserFromFB.js"></script>
+    </body>

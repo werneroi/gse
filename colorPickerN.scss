@@ -1,0 +1,103 @@
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
+    margin: 0;
+    align-items: center;
+
+    font-family: Georgia, sans-serif;
+    font-size: 18px;
+    //background: radial-gradient(honeydew, lightgreen);
+    background-color: lightgreen;
+}
+h1 {
+    align-self: stretch;
+    margin: 0;
+    padding: 1em 0;
+    text-align: center;
+    background: rgba(white, .8);
+}
+h2 {
+    margin-top: 0;
+    font-size: 1.3em;
+}
+section {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 3em;
+    padding: 1em;
+    border: 1em solid transparent;
+    box-sizing: border-box;
+    background: rgba(white, .7);
+    background-clip: padding-box;
+    
+    &::last-of-type {
+        margin-bottom: 1em;
+    }
+}
+
+.button {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: .5em 1em;
+    min-height: 2em;
+    border: none;
+    outline: none;
+    overflow: visible;
+    
+    background-color: dodgerblue;
+    color: white;
+
+    font-family: sans-serif;
+    text-align: center;
+    cursor: pointer;
+    
+    &:hover {
+        //background-image: linear-gradient(white, transparent);
+    }
+    &:focus {
+        outline: .3em dashed orange;
+    }
+}
+
+#custom {
+    .picker_editor {
+        width: 100%;
+    }
+}
+
+#shared {
+    h2 {
+        margin-bottom: 2em;
+    }
+    .pickers {
+        display: inline-flex;
+        padding: .5em;
+        background-color: gainsboro;
+        border: 1px solid silver;
+
+        .button {
+            background-color: white;
+            &:not(:last-child) {
+                margin-right: .5em;
+            }
+
+            &::before {
+                top:0; left:0;
+            }
+        }
+    }
+}
+
+#fixed {
+    display: table;
+    padding: 1em;
+    border: 1px solid silver
+}
+
+@media(max-width: 400px) {
+    .picker_wrapper.popup {
+        font-size: 2vw !important;
+    }
+}

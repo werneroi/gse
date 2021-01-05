@@ -1,0 +1,45 @@
+.modalSettings{
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 9;
+    background-color:white;
+    
+}
+
+#modalSettings{
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 9;
+    background-color:white;
+    
+}
+
+.settings_Modal{
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 9;
+    background-color:white;
+}
+#googleCalendarId{
+    width: -webkit-fill-available;
+}
+
+
+#settings_Modal{
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 9;
+    background-color:white;
+}

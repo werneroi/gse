@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>test</title>
+    <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="937235581132-5di5q85qo9f3egntmq99rg7km7s46hud.apps.googleusercontent.com">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/mobius1-selectr@latest/dist/selectr.min.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/mobius1-selectr@latest/dist/selectr.min.js" type="text/javascript"></script>
+    <!-- <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script> -->
+    <link href='../gse5/pubcal.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.2.0/main.global.min.js'></script>
+    <link href='../gse5/fullcalendar-scheduler-5/lib/main.css' rel='stylesheet' />
+    <script src='../gse5/fullcalendar-scheduler-5/lib/main.js'></script>
+    <script src='../gse5/fullcalendar-scheduler-5/lib/main.min.js'></script>
+    <script src='../gse5/test.js'></script>
+    <script src='../gse5/init.js'></script>
+    <!-- <script src='../gse5/search.js'></script> -->
+    <script src="../gse5/EventActions.js"></script>
+    <script src="../gse5/texts.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="../gse5/pubCalClean.js"></script>
+    <script src="../gse5/respondsToCals.js"></script>
+    <script src="../gse5/manuallEvent.js"></script>
+    <script src="../gse5/inviteUser.js"></script>
+    <script src="../gse5/combodate.js"></script>
+    <script src="../gse5/calActions.js"></script>
+    <script src="../gse5/colors.js"></script>
+    <script src="../gse5/singleUser.js"></script>
+    <link href='../gse5/singleUser.css' rel='stylesheet' />
+    <script src="../gse5/settings.js"></script>
+    <script src="../gse5/profile.js"></script>
+    <link href='../gse5/settings.css' rel='stylesheet' />
+    
+    <script src='../gse5/customConfrim.js'></script>
+    <link href='../gse5/customConfirm.css' rel='stylesheet' />
+    <script src="../gse5/keyBoardShortCuts.js"></script>
+    <script src="../gse5/tips.js"></script>
+    
+    
+    <link href="../gse5/the-datepicker.css" rel="stylesheet" />
+    <script src="../gse5/the-datepicker.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <script src="https://unpkg.com/vanilla-picker@2"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+
+
+    <!-- <script type="text/javascript" src="../gse5/squeezebox.js"></script> -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+
+
+    <link href="../gse5/gModal.css" rel="stylesheet" />
+    <script src="../gse5/gModal.js"></script>
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" -->
+    <!-- crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
+<link rel="stylesheet" href="../gse5/profileMain.css">
+    
+    <style>
+
+        
+    </style>
+
+</head>
+
+<body>
+    <!-- A loading image while waiting -->
+    <div id="loading">
+        <img id="loading-image" src="../gse5/loading.gif" alt="Loading..." />
+    </div>
+
+    <!-- top navigation buttons -->
+    <div id="topnav" class="topnav">
+        <div id="btn_menu">
+            <i class="fa fa-bars" aria-hidden="true" onClick = "openLeftideMenu()"></i>
+        </div>
+        <div id="legend">
+            <i class="fa fa-square" id="normalColor" onClick= "openColorPick(normalColor)"></i>
+            <p class="colorName" onClick = "filterFromColor(normalColor) "style="display:inline-block">Normal</p>
+            <i class="fa fa-square" id="guestColor" onClick="openColorPick(guestColor)" style="display:none"></i>
+            <p class="colorName" style="display:none">guest</p>
+            <i class="fa fa-square" id="otherGuestColor" onClick="openColorPick(otherGuestColor)" style="display:none"></i>
+            <p class="colorName" style="display:none">Other with Guest</p>
+            <i class="fa fa-square" id="otherColor" onClick="openColorPick(otherColor)"></i>
+            <p class="colorName" onClick="filterFromColor(otherColor)" style="display:inline-block" >Others</p>
+            <i class="fa fa-square" id="waiting" onClick="openColorPick(waiting)"></i>
+            <p class="colorName" onClick="filterFromColor(waiting)" style="display:inline-block">Pending</p>
+            <i class="fa fa-square" id="booked" onClick="openColorPick(booked)"></i>
+            <p class="colorName" onClick="filterFromColor(booked)" style="display:inline-block">Confirmed</p>
+            <i class="fa fa-square" id="deleteColor" onClick="openColorPick(deleteColor)"></i>
+            <p class="colorName" onClick="filterFromColor(deleteColor)" style="display:inline-block">Deleted</p>
+            <i class="fa fa-square" id="inviteColor" onClick="openColorPick(inviteColor)"></i>
+            <p class="colorName" onClick="filterFromColor(inviteColor)" style="display:inline-block">Invite</p>
+            <i class="fa fa-square" id="specialColor" onClick="openColorPick(specialColor)"></i>
+            <p class="colorName" onClick="filterFromColor(specialColor)" style="display:inline-block">Special</p>
+        </div>
+        <div id="selectorFoi">
+            
+        </div>
+
+        <div id="btn_settings">
+            <i class="fa fa-cog" aria-hidden="true" onclick="settings()"></i>
+        </div>
+        <div id="btn_profile">
+            <button id="myself" onclick="loadProfile()"></button>
+        </div>
+            
+
+        
+
+        
+    </div>
+
+
+    <div id="mainFOISelector" style="display:none">
+        <select style="display:inline-block" id="foiSelector1" name="foiSelector1"> </select>
+    </div>
+
+
+    <!-- header strip with calendar related buttons and controls -->
+    <div id="warpper">
+        <div id= "mainView">
+            <div id="heade">
+                <i id="addEvent" class="fa fa-calendar-plus-o" aria-hidden="true"  onclick="openAddEventManually()"></i>
+                <i id="gotoDate" class="fa fa-calendar " aria-hidden="true"  onclick="gotoDate()"></i>
+                
+
+
+                <button id="today" onclick="today()">Today</button>
+                <i id="prevDate" onclick="prevDate()" class="fa fa-chevron-left" aria-hidden="true"></i>
+                <i id="nextDate" onclick="nextDate()" class="fa fa-chevron-right" aria-hidden="true"></i>
+
+                <span id="currentDate" style="padding-left: 340px;">Current Date</span>
+                <select style="float: right" id="calSelector" name="calSelector">                 
+                        <option>Day</option>
+                        <option >Week</option>
+                        <option >Month</option>
+                        <option>List</option>                       
+                        <option>Timeline Day</option>                       
+                        <option>Timeline Week</option>                       
+                        <option>Timeline Month</option>                       
+                </select>
+                <!-- <button id="btn_month" onclick="month()" style="float: right">Month</button>
+                <button id="btn_week" onclick="week()" style="float: right">Week</button>
+                <button id="btn_day" onclick="day()" style="float: right">Day</button> -->
+
+            </div>
+
+
+
+
+
+            <div class="calendarArea" id="calendarArea">
+                <div id = "leftSide">
+                    <div id='control' class='control' >
+                        <i class='fa fa-eye' id='toggleAllUserSelection' onclick='toggleAllUserSelection()'></i>
+                        <i class='fa fa-star' id='toggleAllFavSelection' onclick='toggleAllFavs()'></i>
+                    </div>
+                    <select class="selectUser" id="userList_selectUser" name="userList_selectUser"></select>
+                    <div class="myList" id="myList" style="visibility: visible">
+                        <button id="userListWithEvents" class="userlistAccordion activeSign">Users with Events</button>
+                        <div id="panel_usersTableWithEvents" class="userListPanel">
+                            <div id="usersTableWithEvents"></div>
+                        </div>
+                        <button id="userListWithNoEvents" class="userlistAccordion">Users without Events</button>
+                        <div id="panel_usersTableNoEvents" class="userListPanel">
+                            <div id="usersTableNoEvents"></div>
+                        </div>                
+                    </div>
+                </div>
+                <div id = "calArea">
+                    <!-- <div class = "cal" id="cal"></div> -->
+                    <div class="calendarAlt" id='calendarAlt'></div>
+                    <div class="calendar" id='calendar' style="display: none"></div>
+                    
+                </div>
+                <div id="rightSideMenu">
+                    <div id = "Icon_inBox" onclick="openInBox()">
+                        <p id="badgeNum" >0</p>
+                        <i class="fa fa-circle badge" aria-hidden="true" ></i>
+                        <i class="fa fa-inbox fa-fw" aria-hidden="true" ></i>
+                    </div>
+                        <i class="fa fa-calendar-check-o fa-fw" aria-hidden="true" id="openEventsToConfirm"></i>
+                    <i id="icon_toggleSelf" class="fa fa-users fa-fw" aria-hidden="true" onclick="toggleSelf()"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="singleCal" style="visibility:hidden">
+            <div class="calendarSingle" id='calendarSingle' ></div>
+            
+            <div id="eventDetails">
+                    <textarea id="eventDetailsData_Public" placeholder="Public Event Details" rows="5"></textarea>
+                    <textarea id="eventDetailsData_Private" placeholder="Private Event Details" rows="5"></textarea>                
+            </div>
+        
+
+               
+                <div id="singleButtonsRow" style="padding: 10px; padding-left: 40px">
+                    <button id="backToCal" onclick="backToCal()" style="Padding:10px;">BackToCal</button>
+                    <button id="cancelInvite" onclick="cancelInviteFromButton()" style="Padding:10px; display: none">Cancel Invitation</button>
+                    <button id="requestEv" onclick="requestEvent()" style="Padding:10px; display: none">requestEvent</button>
+                    <button id="deleteEvent" onclick="deleteEvent('')" style="Padding:10px; display: none">delete Event</button>
+                    <button id="openEvent" onclick="openEvent()" style="Padding:10px; display: none">Open Event</button>
+                    <!-- <button id="AddEventManually" onclick="openAddEventManually()" style="Padding:10px;">Add Event</button> -->
+                    
+                    <!-- <button id="joinEventManually" onclick="joinEventManually()" style="Padding:10px;">Join Event</button> -->
+                    <button id="inviteUserSingle" onclick="inviteUserSingle()" style="Padding:10px; display: none">Invite User</button>
+                    <label id="label_AG" style="display:none">Accept Guests:</label>
+                    <input type="checkbox" id="acceptGuest_default" name="acceptGuest_default" style="display:none"></input>
+                    <label id="label_AG_singlePage" style="display:none">Accept Guests_:</label>
+                    <input type="checkbox" onchange="toggleGuest()" id="acceptGuest_singlePage" name="acceptGuest_default" style="display:none"></input>
+            
+                    <button id="trimB" onclick="trimEvent()">Trim</button>
+                    <button id="confirmB" onclick="confirmEvent()">Confirm Booking</button>
+                    <button id="declineB" onclick="decline()">Decline</button>            
+                </div>
+
+                
+        </div>
+    </div>
+
+    <div id="calsButtonRow">
+            <!-- <select style="display:inline-block; width:100px;" id="langSelector" name="langSelector" style="display:none"> </select> -->
+            <!-- <button id="btn_toggleList" onclick="toggleUsersList()">Show Users List</button> -->
+            <!-- <button id="btn_filterLang" onclick="filterLanguages()">Filter Language</button> -->
+            <!-- <button id="btn_filterCountry" onclick="filterCountry()">Filter Country</button> -->
+            <!-- <button id="btn_toggleFavs" onclick="toggleAllFavs()">Show Favorites</button> -->
+            <button id="toggleSelf" onclick="toggleSelf()" style="display:none">toggle Self</button>
+            <!-- <button id="toggleDisplay" onclick="toggleDisplay()">toggle Display</button> -->
+            <!-- <button id="toggleResources" onclick="showOnlyResourcesWithEvents()">toggle Resources</button> -->
+            <button id="openEventsToConfirm1" style="display:none">Events to confirm</button>
+            <!-- <button id="list" onclick="showAsList()">Show as events list</button> -->
+            <!-- <button id="gotoDate" onclick="gotoDate()">go to date</button> -->
+            <button id="openInBox" onclick="openInBox()" style="display:none">Inbox</button>
+            <!-- <button id="toggleConfirmed" onclick="toggleConfirmed()">Show confirmed events</button> -->
+    </div>
+
+
+    <div id="profilePage" style="display:none">
+        
+        <div id="topnav" class="topnav">
+            <button id="backFromProfile" onclick="backFromProfile()">Back</button>                
+        </div>
+        
+        
+        
+        <form id="inputForm" action="javascript:void(0);" method="post">
+            <a id="logOut" onclick="logOut()">logOut</a>
+            <h1>Profile</h1>
+    
+    
+            <fieldset>
+                <!-- <legend><span class="number">1</span>Your basic info</legend> -->
+                <label for="firstName">Name:</label>
+                <input type="text" id="firstName" name="firstName">
+    
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName">
+    
+                <label for="country">Country:</label>
+                <input type="text" id="countryInput" name="country">
+    
+                <label for="city">City:</label>
+                <input type="text" id="cityInput" name="city">
+    
+                <label id="mailLabel" for="mail">Email:</label>
+                <input type="email" id="mail" name="user_email">
+    
+                <!-- <label for="password">Password:</label>
+                <input type="password" id="password" name="user_password">  -->
+    
+    
+    
+                <!-- <legend><span class="number">2</span>Your profile</legend> -->
+                <label for="bio">Write a few words about yourself:</label>
+                <textarea id="about" name="about"></textarea>
+    
+                <label for="bio">Write a few words about what you are looking for:</label>
+                <textarea id="looking" name="looking"></textarea>
+            </fieldset>
+    
+            <fieldset>
+                <br/>
+                <label for="selectLang">Additional Language:</label>
+                <select id="selectLang" name="selectLang"></select>
+            </fieldset>
+    
+            <fieldset>
+                <br/>
+                <!-- <p>Are offering services (practioner) or looking for services (guest)?</p>
+                <p></p>Guests can request events. Practioners can create events.</p> -->
+                <br/>
+                <!-- <input type="checkbox" id="guest"  name="iAmGuest" onclick="checkGuest()"><label class="light" for="guest">I am a guest</label> -->
+                <!-- <input type="checkbox" id="practioner"  name="iAmPractioner" onclick="checkPractioner()"><label class="light" for="practioner">I am a practioner</label> -->
+    
+                <div id="practionersOnly">
+                    <br/>
+                    <label for="foiList">Fields of practice:</label>
+                    <select id="foiList" name="foiList"></select>
+    
+                    <fieldset>
+                        <!-- <br/>
+                            <p>If you want guest users to see your calendar and contact you for practice, check this box.</p>
+                            <label for="enableGuests" class="light">Accept Guests</label>
+                            <input type="checkbox" id="enableGuests" name="enableGuests"><br> -->
+                    </fieldset>
+                </div>
+            </fieldset>
+    
+            <fieldset>
+                <br/>
+                <label for="userWebSite page">Your website:</label>
+                <input type="text" id="userWebSite" name="userWebSite">
+    
+                <label for="facebookUrl">Facebook page:</label>
+                <input type="text" id="facebookUrl" name="facebookUrl">
+    
+                <label for="linkedInUrl">LinkedIn page:</label>
+                <input type="text" id="linkedInUrl" name="linkedInUrl">
+    
+                <!-- hidden yet reqiered for upload to work for some reason -->
+                <!-- <input type='file' style="display:none;"/>
+                    <img src='../gse5/emptyProfile.png' class = 'userImage' id="userImageProfile" style="display:none;">
+                    -->
+                <span id = "btn_deleteImage" onclick = "removeProfileImage()" class="deleteImage" style="cursor:pointer">&times;</span> 
+                <div class="circular--landscape">
+                    
+                    <br/>
+                    <div class="custom-file">
+                        <img src='../gse5/emptyProfile.png' id="imgFileUpload" alt="Select File" title="Select File" style="cursor: pointer; width:100px; display:inline-block;"
+                        />
+                        <input type="file" accept="image/*" id="cover_image" style="padding-left:110px; display:none;">
+                    </div>
+                    <!-- <br /> -->
+                    <!-- <span id="spnFilePath"></span> -->
+                    <br/>
+    
+                    <!-- <input type="file" id="FileUpload1"  /> -->
+                </div>
+    
+            </fieldset>
+    
+            <!-- <button type="submit">Sign Up</button> -->
+    
+        </form>
+        <div class="container">
+
+                <div class="modal" tabindex="-1" role="dialog" id="uploadimageModal">
+                    <div class="modal-dialog" role="document" style="min-width: 300px">
+                        <!-- <div class="modal-dialog" role="document> -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit your picture</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <div id="image_demo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary crop_image">Crop and Save</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="parent">
+                <button align="center" type="submit" id="submit1" onclick="writeUserProfileInfo()">Submit</button>
+                <button id="cancel" style="display:none;">Cancel</button>
+            </div>
+
+    </div>
+
+    
+
+    <!-- INVISIBLE ELEMENTS -->
+
+    <!-- Tippy template -->
+    <div id="template" style="display:none; z-index:99">
+        <span id="tip_title">Name</span>
+        <br>
+        <span id="tip_date">Date</span>
+        <br>
+        <span id="tip_start">Start</span>
+        <div id='tippyButtns'>
+            <i id="tip_trash" class="fa fa-trash"></i>
+            <i id="tip_invite" class="fa fa-plus-circle"></i>
+            <i id="tip_cancelInvite" class="fa fa-minus-circle"></i>
+            <i id="tip_acceptInvite" class="fa fa-check-circle"></i>
+            <i id="tip_declineInvite" class="fa fa-times-circle"></i>
+            <i id="tip_chat" class='chatIcon fa fa-comment'></i>
+            <i id="tip_open" class='fa fa-circle-o'></i>
+        </div>
+    </div>
+
+    <div style="display: none;">
+        <div id="eventToConfirmList" style="display: none;"></div>
+    </div>
+
+    <!-- TEXT MODAL FOR CONFIRM -->
+    <div id="textArea" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="closeText">&times;</span>
+            <p>
+                <span id="textAreaHeader">Header</span>
+            </p>
+            <textarea id="textAreaField" class="textarea" placeholder="Add a note..." rows="10"></textarea>
+            <button id="btn_TextModalSubmit" onclick="confirmButton_textBox()">confirm</button>
+            <button id="clearText" onclick="clearTextPC()">clear Text</button>
+            <button id="btn_TextModalClose" onclick="closeModalPC()">cancel</button>
+
+        </div>
+    </div>
+
+    <!-- Color Picker -->
+    <div id="cpicker" class="modalPicker"></div>
+
+    <!-- INVITE USER MODAL -->
+    <div id="inviteUser" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="closeTextInvite" class="closeText">&times;</span>
+            <p>
+                <span id="inviteTextAreaHeader">Header</span>
+            </p>
+            <label for="selectUser">Select User: </label>
+            <select class="selectUser" id="selectUser" name="selectUser"></select>
+            <br/>
+            <!-- <label for="emailToInvite">Or invite by email:</label> -->
+            <!-- <input type="emailToInvite" id="emailToInvite" name="emailToInvite"> -->
+            <textarea id="inviteTextAreaField" class="textarea" placeholder="Add a note..." rows="10"></textarea>
+            <button id="btn_inviteUser" onclick="sendInvite()">Send Invitation</button>
+            <button id="clearTextInvite" onclick="clearTextInvite()">clear Text</button>
+
+        </div>
+    </div>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+
+    <div id="singleUserModal">
+
+        <!-- <div id="test">test</div> -->
+        <!-- SINGLE USER MODAL -->
+        
+            <!-- <span class="closeSingleUser">&times;</span> -->
+            <div id="singleUserModal_name" >
+                <div id="aboutHeader" onclick="toggleUserHeader()">
+                    <div id="headL">
+                        <span style="cursor: pointer" id="closeSingleUser" onclick="closeChatModal()">&times;</span>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </div>
+                    <div id="headC">
+                        <span id="userNameField" style="font-size:150%"> User Name</span>
+                    </div>
+                    <div id="headR">
+                        <i id="onlineStatus" class="fa fa-comments-o" aria-hidden="true"></i>
+                        <i id="link_website" onclick="openFromSingleUser_WebSite()" class="fa fa-globe" aria-hidden="true"></i>
+                        <i id="link_facebook" onclick="openFromSingleUser_FaceBook()"class="fa fa-facebook" aria-hidden="true"></i>
+                        <i id="link_linkedin" onclick="openFromSingleUser_LinkedIn()" class="fa fa-linkedin" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="aboutWindow">
+                    <div id="infoBodyMain">
+                        <div class="singleUserModal_profileImage">
+                            <div class="circular--landscape">
+                                <img id="singleUserModal_profileImage" src="../gse5/emptyProfile.png">
+                            </div>
+                        </div>
+
+
+                        <div class ="infoIconsColmn" >
+                            <i class="fa fa-th" aria-hidden="true"></i>
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </div>
+
+
+                        <div id="infoTitle" class="infoTitle">
+                            <div id="foi" class="infoRow">
+                                <p class="infoData" id="fieldsOfInterest">Fields of practice</p>
+                            </div>
+                            <div id="langs" class="infoRow">
+                                <p class="infoData" id="exLanguage">exLanguage</p>
+                            </div>
+                            <div id="address" class="infoRow">
+                                <p class="infoData" id="addressText">address</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="aboutData">
+                        <p id="about" class="infoHeader">Who I am</p>
+                        <p id="aboutText" class="infoText">I am...</p>
+
+                        <p style="padding-top:10px" id="look" class="infoHeader">What I am looking for</p>
+                        <p id="lookText" class="infoText">I look for...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chatDivider"></div>
+            <div id="chatPannel" > 
+                <div class="chat">
+                    <div id="chatBody" class="chat_Body">
+                        <ul id="messages">
+                            <div id="chat other">
+
+                            </div>
+                            <!-- <div class="chat owner">
+                                <div class="messageBody"></div> <li class='sentMessage' id='message-'>Helllo
+                                    <button data-id="deleteB" onclick='deleteMessage(this);'>Delete</button>
+
+                                    </li>
+                                </div>
+                                <div id='messageTime' style='font-size: 60%'>12/10/2020</div>
+                                <i class='fa fa-check' aria-hidden='true' style='color:"+ checkColor +"'></i>
+                            </div>
+
+                            <div class="chat other">
+                                <div class="messageBody"></div> <li class='sentMessage' id='message-'>Helllo backk</li>
+                                </div>
+                                <div id='messageTime' style='font-size: 60%'>12/10/2020</div>
+                                <i class='fa fa-check' aria-hidden='true'></i>
+                            </div> -->
+
+
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="chat_send">
+                    <input id="message" placeholder="Enter message" autocomplete="off">
+                    <input onclick="sendMessage()" type="submit" id="SubmitMessageButton" value="Send">
+                </div>
+        
+
+    </div>
+
+
+
+
+    <!-- Modal content for manual event -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="closeManualEvent">&times;</span>
+            <input type="text" id="dateInput" placeholder="click to choose a date">
+            <br>
+            <p id="eventStart">Event Start:</p>
+            <input type="text" id="datetime15" data-format="HH:mm" data-template="HH : mm" name="starttime" value="10:00">
+            <script>
+                $(function () {
+                    $('#datetime15').combodate({
+                        minuteStep: 30
+                    });
+                });
+            </script>
+            <br>
+            <p id="eventEnd">Event End</p>
+            <input type="text" id="datetime16" data-format="HH:mm" data-template="HH : mm" name="endtime" value="10:30">
+            <script>
+                $(function () {
+                    $('#datetime16').combodate(
+                        {
+                            minuteStep: 30
+                        }
+                    );
+                });
+            </script>
+            <br>
+            <label for="selectUser">Select a user to invite: </label>
+            <select class="selectUser" id="selectUserManual" name="selectUserManual"></select>
+            <br>
+            <input type="checkBox" id="repeatEvent">Repaeat event weekly</button>
+            <br>
+            <br>
+            <textarea id="eventDetailsTextField" class="textarea" placeholder="Add a note..." rows="5"></textarea>
+            <button id="addEvent" onclick="writeManualEvent()">Add Event</button>
+        </div>
+    </div>
+
+    <!-- Modal go to date -->
+    <div id="gotoDate_Modal" class="modal">
+        <div class="gotoDate_Modal_content">
+            <span class="closeGotoDate">&times;</span>
+            <input type="text" id="dateInput">
+            <br>
+            <p id="eventStart">Go to date:</p>
+            <input type="text" id="datetime17" data-format="DD:MM:YYYY" data-template="DD:MM:YYYY" name="starttime" >
+            <script>
+                $(function () {
+                    
+                    $('#datetime17').combodate({
+                        minYear: 2020,
+                        maxYear: 2023,
+                        value: moment().format('DD:MM:YYYY'),
+                    });
+                });
+            </script>
+            <br>
+
+
+            <button id="gotoDate_submit" onclick="respondToGotoDate()">go</button>
+        </div>
+    </div>
+
+    <!-- MOdal Inbox -->
+    <div id="inBox_Modal" style="display:none" class="modal2">
+        
+        <div class="inBox_Modal_content">
+            <div id="inBoxHeader">
+                <span class="closeInBoxModal">&times;</span> 
+                <span id="inBoxHeaderText">Inbox</span>     
+                <i id="inBox_EmptyAll" onclick="emptyInBox()" class="fa fa-trash"></i>      
+            </div>
+            <div id = "inboxHeaderButtonsRow">
+                <button id = "InboxBtn_status" onclick="filterStatus()">Status</button>
+                <button id = "InboxBtn_eventDate" onclick="filterEventDate()">Event Date</button>
+                <button id = "InboxBtn_message" onclick="filterMessageDate()">Message Date</button>
+            </div>
+
+            
+                <table border='1' id='inBoxTable'>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>            
+            <div id="inBoxButtons">
+                <!-- <button id="emptyInbox" onclick="emptyInBox()">Empty Inbox</button> -->
+            </div>
+        </div>       
+    </div>
+
+
+    <!-- MOdal Settings -->
+    <div id="settings_Modal" style="display:none" class="modalSettings">
+        <!-- <div id="inBoxDiv" style="position:absolute"> -->
+        <div class="settings_Modal_content">
+            <div id="topnav" class="topnav">
+                    <span class="btn_closeSettingsModal" style="cursor:pointer; color:white; font-size:1.5em; padding-left: 10px;">&times;</span>
+                    <span id="header_settings" style="color:white;">Settings</span>
+                    <div id="btn_profile">
+                            <button id="myself" onclick="loadProfile()"></button>
+                    </div>
+            </div>
+
+            
+            <fieldset>
+                <input type="checkbox" id="syncWithGoogle" onclick="toggleSyncGoogle()">Sync with Google Calendar</input>
+                </br>
+                <input type="radio" id="googleSyncAllEvents" onclick="googleSyncAllEvents()">Sync all my events</input>
+                <input type="radio" id="googleSyncConfirmedEvents" onclick="googleSyncConfirmedEvents()">Sync only confirmed events</input>
+                </br>
+                <input text id="googleCalendarId" placeholder="Insert your google calendar Id here"></input>
+                <button id = "validateGoogleIdText" onclick="ValidategoogleCalendarId()">Validate Google Calendar Id</button>
+            </fieldset>
+            <!-- <button id="connectGoogleAccount" onclick="connectGoogleAccount()">Add event</button> -->
+            <!-- <button id="addEvent" onclick="addEvent()">Add event</button> -->
+            <button id="authorize_button" onclick="start()" style="display: none;">Authorize</button>
+            <button id="signout_button" style="display: none;">Sign Out 11</button>
+
+            <pre id="content" style="white-space: pre-wrap;"></pre>
+
+            <!-- Display Google sign-in button -->
+            <div id="gSignIn"></div>
+
+            <!-- Show the user profile details -->
+            <div class="userContent" style="display: none;"></div>
+
+            <fieldset>
+                <!-- chhose the day to start the week dislay -->
+                <div>
+                    <p>Week display start</p>
+                    <select class="selectDay" id="dayDisplay_selectUser" name="dayDisplay_selectUser"></select>
+                </br>  
+                </div>
+
+            </fieldset>
+            <fieldset>
+                <p style="color:black; display:inline-block">Show system tooltips: </p>
+                <input style="padding-left: 20px; color:white" type="checkbox" id="allowToolTipGeneric" onclick="toggleToolTipGeneric()" checked=true>
+                </br> 
+                <p style="color:black; display:inline-block">Show events tooltips: </p>
+                <input style="padding-left: 20px; color:white" type="checkbox" id="allowToolTip" onclick="toggleToolTip()" checked=true>
+            </fieldset>
+        </div>
+        <!-- </div> -->
+    </div>
+
+
+    <!-- <div id="modalCanvas">    
+        <div id="mainConfirmBody">
+            <div id="confirmText">
+                <p id="confirmText_Body">aaa</p>
+            </div>
+            <div id=confirmButtonsRow>            
+                <button class="confirm_btn" id="confirmCancel" onclick="confirmCancel()">Cancel</button>
+                <button class="confirm_btn" id="confirmAccept" onclick="confirmAccept()">Accept</button>
+            </div>
+            <div id = "confirmCheckBox">
+                <input type="checkbox" id="confirmCheck" onclick="toggleConfirmCheck()">Never ask me again
+            </div>                
+        </div>
+    </div> -->
+    
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="image-cropper.js"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="ogin2.css" />
+    <!-- <script src="main.js"></script> -->
+
+
+</head>
+<body>
+
+        <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+
+<div class="login">
+  <div class="login-header">
+    <h2>Login</h2>
+  </div>
+  <div class="login-form">
+    <h3>Username:</h3>
+    <input type="text" placeholder="Username"/><br>
+    <h3>Password:</h3>
+    <input type="password" placeholder="Password"/>
+    <br>
+    <input type="button" value="Login" class="login-button"/>
+    <br>
+    <a class="sign-up">Sign Up!</a>
+    <br>
+    <h4 class="no-access">Can't access your account?</h4>
+  </div>
+</div>
+<div class="error-page">
+  <div class="try-again">Error: Try again?</div>
+</div>
+
+
+<script>
+    $('.error-page').hide(0);
+
+$('.login-button , .no-access').click(function(){
+  $('.login').slideUp(500);
+  $('.error-page').slideDown(1000);
+});
+
+$('.try-again').click(function(){
+  $('.error-page').hide(0);
+  $('.login').slideDown(1000);
+});
+</script>
+    
+</body>
+</html>

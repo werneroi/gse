@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link rel="stylesheet" href="../gse5/style.css">
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
+
+<!-- fullcalendar bundle -->
+<!-- <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.2.0/main.min.js'></script> -->
+
+<!-- the moment-to-fullcalendar connector. must go AFTER the moment lib -->
+
+
+<link href='../gse5/fullcalendar-scheduler-5/lib/main.css' rel='stylesheet' />
+<script src='../gse5/fullcalendar-scheduler-5/lib/main.js'></script>
+<script src='../gse5/fullcalendar-scheduler-5/lib/main.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.2.0/main.global.min.js'></script>
+<script src='../gse5/init.js'></script>
+<script src='../gse5/singleEvent.js'></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- <script src="js/jquery.js"></script> 
+<script src="js/moment.min.js"></script>  -->
+<script src="../gse5/combodate.js"></script> 
+
+
+<style>
+    #calendar{
+        width: 60vw;
+        height: 80vh;
+    }
+
+    p{
+        font-size: 300%;
+    }
+
+    .fc-license-message{
+        display:none;
+    }
+
+    .fc-timegrid-slot{
+        height: auto!important;
+    overflow-y: auto;
+       /* height: 1.0em; */
+    }
+    .fc-day-grid-container.fc-scroller {
+    height: auto!important;
+    overflow-y: auto;
+    }
+
+
+    .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal .textarea{
+    width: 100%; /* Full width */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+    <div id="calendar">
+        
+    </div>
+    <div>
+            <button id="test" onclick="test()">Cancel</button>
+        <button id="trimB" onclick="trimEvent()">Trim</button>
+        <button id="confirm" onclick="confirmEvent()">Confirm Booking</button>
+        <button id="decline" onclick="decline()">Decline</button>
+        
+        
+        
+    </div>
+
+    <div id="textArea" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <textarea id= "textAreaField" class="textarea" placeholder="Add a note..." rows="10"></textarea>
+              <button id="submit" onclick="submit()">confirm</button>
+              <button id="clearText" onclick="clearText()">clear Text</button>
+          
+            </div>
+          </div>
+
+
+</body>
+</html>
+
+    

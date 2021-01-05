@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <!-- <link href='../gse5/fullcalendar-scheduler-5/lib/main.css' rel='stylesheet' />
+    <script src='../gse5/fullcalendar-scheduler-5/lib/main.js'></script>
+    <script src='../gse5/cal.js'></script> -->
+    
+    <!-- <script src="../gse5/croppieRoi.js"></script> -->
+
+    <style>
+    #page {
+  background: #FFF;
+  padding: 20px;
+  margin: 20px;
+}
+
+#demo-basic {
+  width: 200px;
+  height: 300px;
+}
+    
+    </style>
+  </head>
+  <body>
+        <!--This is for taking picture input form user -->
+<div class="row">
+        <div class="col-lg-12 col-md-12 text-center">
+            <h3>Image Cropper</h3>
+        </div>
+        <div class="col-lg-12">
+            <div class="jumbotron text-center">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img id="uploaded-image" src="https://flexgroup.nz/wp-content/uploads/2018/05/dummy-image.jpg" height="300px" width="600px">
+                    </div>
+                    <div class="input-group mt-3">
+                        <div class="custom-file">
+                            <input type="file" accept="image/*" id="cover_image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- This is the modal -->
+<div class="modal" tabindex="-1" role="dialog" id="uploadimageModal">
+        <div class="modal-dialog" role="document" style="min-width: 700px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div id="image_demo"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary crop_image">Crop and Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+              
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="../gse5/stylesheet" href="croppie.css" />
+<script src="../gse5/croppie.js"></script>
+<script src="../gse5/croppieRoi.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<div id="addEvent" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <!-- <div id='singleEvent' style="display:none;"> -->
+            <!-- <p id = "auther">User:</p> -->
+            <input type="text" id="datetime12" data-format="DD-MM-YYYY" data-template="DD MMM YYYY" name="date" value="09-01-2013">
+            <br>
+            <input type="text" id="datetime13" data-format="h:mm A" data-template="hh : mm A" name="starttime" value="8:30 pm">
+            <script>
+            $(function(){
+                $('#datetime13').combodate({
+                  minuteStep: 15
+                });  
+            });
+            </script>
+            <br>
+            <input type="text" id="datetime14" data-format="h:mm A" data-template="hh : mm A" name="endtime" value="8:30 pm">
+            <script>
+            $(function(){
+                $('#datetime14').combodate(
+                  {
+                    minuteStep: 15
+                  }
+                );  
+            });
+            </script>
+                                      
+            <br>
+            <button id="sendOrdelete" onclick="writeManualEvent()">Add Event</button>
+      <!-- </div> -->
+    
+      </div>
+    </div>
